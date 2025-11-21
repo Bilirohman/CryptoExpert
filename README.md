@@ -71,7 +71,7 @@ Pastikan Anda telah menginstal Python 3.9 atau versi yang lebih baru.
 
 ### 2. Kloning Repositori
 ```Bash
-git clone https://github.com/Bilirohman/cryptography.git
+git clone https://github.com/Bilirohman/CryptoExpert.git
 cd crypto-expert
 ```
 ### 3. Buat Virtual Environment (Disarankan)
