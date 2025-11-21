@@ -16,8 +16,8 @@ def render(key_input: str):
     components.render_step_info(
         "-",
         "-",
-        "Info Visualisasi",
-        "Fitur ini mensimulasikan 50 byte pertama file Anda.",
+        "Mode Pratinjau",
+        "Visualisasi ini mendemonstrasikan bagaimana algoritma Columnar Transposition bekerja menggunakan sampel 50 byte awal data / header file.",
     )
 
     col_file, col_viz = st.columns([1, 1])
