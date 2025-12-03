@@ -12,7 +12,7 @@ def reset_file_visuals():
 
 
 def render(key_input: str):
-    st.subheader("📁 Enkripsi/Dekripsi File")
+    st.subheader("Enkripsi/Dekripsi File")
     components.render_step_info(
         "-",
         "-",
