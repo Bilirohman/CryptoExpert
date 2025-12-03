@@ -42,7 +42,7 @@ def main():
 
     # --- Sidebar Configuration ---
     with st.sidebar:
-        st.header("⚙️ Konfigurasi")
+        st.header("Konfigurasi")
         mode = st.selectbox(
             "Pilih Operasi", ["Enkripsi Teks", "Dekripsi Teks", "Proses File"]
         )
@@ -66,7 +66,11 @@ def main():
                 padding_char = ""
 
         st.info(
-            "ℹ️ **Our Team**\n\nGunawan Sabili Rohman | 230018\nMaritza Ratnamaya Nugroho | 230076"
+            """
+            **Our Team**
+            - Gunawan Sabili Rohman — 230018  
+            - Maritza Ratnamaya Nugroho — 230076
+            """
         )
 
     # --- Routing ke Views ---

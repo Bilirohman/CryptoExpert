@@ -14,7 +14,7 @@ def render(key_input: str, key_mode: str):
 
     # --- KOLOM KIRI: INPUT ---
     with col_input:
-        st.subheader("🔓 Input Ciphertext")
+        st.subheader("Input Ciphertext")
         cipher_in = st.text_area("Masukkan Ciphertext:", height=200)
 
         if st.button("Buka Pesan (Dekripsi)", type="primary", use_container_width=True):
@@ -34,7 +34,7 @@ def render(key_input: str, key_mode: str):
 
     # --- KOLOM KANAN: OUTPUT ---
     with col_output:
-        st.subheader("📝 Hasil Plaintext")
+        st.subheader("Hasil Plaintext")
 
         res = st.session_state.decrypt_result
         if res:
@@ -46,7 +46,7 @@ def render(key_input: str, key_mode: str):
             )
 
             st.download_button(
-                "💾 Download Plaintext (.txt)",
+                "Download Plaintext (.txt)",
                 data=res["plaintext"],
                 file_name="decrypted.txt",
                 mime="text/plain",
@@ -58,7 +58,7 @@ def render(key_input: str, key_mode: str):
     # --- BAGIAN VISUALISASI ---
     if st.session_state.decrypt_result:
         st.divider()
-        st.header("🎬 Visualisasi Dekripsi")
+        st.header("Visualisasi Dekripsi")
         res = st.session_state.decrypt_result
 
         phase_selection = st.radio(

@@ -1,44 +1,42 @@
-# 🔐 CryptoExpert: Columnar Transposition Cipher
+# CryptoExpert: Columnar Transposition Cipher
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.30.0-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-**CryptoExpert** adalah platform edukasi dan visualisasi kriptografi interaktif yang berfokus pada algoritma **Columnar Transposition Cipher**. Aplikasi ini dibangun menggunakan Python dan Streamlit, dirancang untuk membantu pengguna memahami mekanisme enkripsi dan dekripsi klasik melalui visualisasi langkah-demi-langkah.
+**CryptoExpert** adalah platform edukasi dan visualisasi kriptografi interaktif yang berfokus pada algoritma **Columnar Transposition Cipher**. Aplikasi ini dibangun menggunakan Python dan Streamlit, dirancang untuk membantu pengguna memahami mekanisme enkripsi dan dekripsi Columnar Transposition melalui visualisasi langkah-demi-langkah.
 
-## Our Team
-| No. | Nama               | NPM    |
+## Website CryptoExpert
+https://cryptoexpert.streamlit.app/
+
+## Anggota
+| No. | Nama                      | NPM    |
 | :-- | :------------------------ | :----- | 
 | 1   | Gunawan Sabili Rohman     | 140810230018 | 
 | 2   | Maritza Ratnamaya Nugroho | 140810230076 | 
 
-## 📋 Fitur Utama
+## Fitur Utama
 
-Aplikasi ini menawarkan fitur komprehensif untuk kebutuhan pembelajaran dan pemrosesan data sederhana:
-
-* **Enkripsi Teks Interaktif:**
+* **Enkripsi Teks**
     * Input teks fleksibel.
-    * Visualisasi pembentukan matriks (Grid).
     * Opsi **Padding Otomatis** (karakter pengisi) untuk melengkapi blok matriks.
     * Dukungan mode kunci: *Stable* (urutan kemunculan) dan *Numbered* (A1, A2, dst).
-* **Dekripsi Teks:**
+* **Dekripsi Teks**
     * Mengembalikan *Ciphertext* menjadi *Plaintext* menggunakan kunci yang sama.
-    * Logika rekonstruksi kolom yang presisi.
-* **Pemrosesan File:**
-    * Kemampuan untuk melakukan enkripsi/dekripsi pada file teks (melalui modul `tab_file`).
-* **Visualisasi & Animasi:**
-    * Antarmuka modern dan responsif.
-    * Penjelasan visual bagaimana kunci mempengaruhi pengacakan kolom.
+* **Pemrosesan File**
+    * Melakukan enkripsi dan dekripsi pada input file.
 
-## 🛠️ Teknologi yang Digunakan
+## Tambahan
+* **Visualisasi Step :**
+    * Visualisasi dan animasi pembentukan matriks (Grid) untuk proses dekripsi dan enkripsi teks
 
-Proyek ini dibangun di atas ekosistem Python yang kuat:
+## Teknologi yang Digunakan
+Proyek ini dibangun di atas ekosistem Python dengan:
 
-* **[Streamlit](https://streamlit.io/):** Framework utama untuk antarmuka pengguna (UI) web yang interaktif.
+* **[Streamlit](https://streamlit.io/):** Framework utama untuk antarmuka pengguna (UI) web interaktif.
 * **[Pandas](https://pandas.pydata.org/):** Manipulasi data untuk struktur matriks/tabel enkripsi.
-* **[Plotly](https://plotly.com/):** (Opsional/Dependensi) Untuk visualisasi data tingkat lanjut jika diperlukan.
 
-## 📂 Struktur Proyek
+## Struktur Proyek
 
 Proyek ini menerapkan arsitektur modular untuk memisahkan *logic*, *view*, dan *style* agar kode mudah dipelihara (*maintainable*):
 
@@ -46,13 +44,13 @@ Proyek ini menerapkan arsitektur modular untuk memisahkan *logic*, *view*, dan *
 CRYPTOGRAPHY/
 ├── assets/             # Aset statis dan styling
 │   └── styles.py       # Konfigurasi CSS global
-├── src/                # Core Logic (Backend)
+├── src/                # Backend
 │   ├── cipher.py       # Implementasi algoritma Columnar Transposition
 │   ├── components.py   # Komponen UI reusable
 │   ├── file_handler.py # Utilitas pembacaan/penulisan file
 │   ├── utils.py        # Fungsi bantuan umum
 │   └── visuals.py      # Logika visualisasi grafis
-├── views/              # UI Pages (Frontend)
+├── views/              # Frontend
 │   ├── tab_decrypt.py  # Halaman Dekripsi
 │   ├── tab_encrypt.py  # Halaman Enkripsi
 │   └── tab_file.py     # Halaman Proses File
@@ -63,11 +61,10 @@ CRYPTOGRAPHY/
 └── README.md           # Dokumentasi proyek
 ```
 
-## 🚀 Instalasi dan Penggunaan
-Ikuti langkah-langkah berikut untuk menjalankan aplikasi di lingkungan lokal Anda:
+## Instalasi dan Penggunaan
 
 ### 1. Prasyarat
-Pastikan Anda telah menginstal Python 3.9 atau versi yang lebih baru.
+Python 3.9 atau versi yang lebih baru.
 
 ### 2. Kloning Repositori
 ```Bash
@@ -94,7 +91,7 @@ pip install -r requirements.txt
 ```Bash
 streamlit run app.py
 ```
-Aplikasi akan otomatis terbuka di browser default Anda pada alamat http://localhost:8501.
+Aplikasi akan otomatis terbuka di browser default dengan alamat http://localhost:8501.
 
-## 📄 Lisensi
+## Lisensi
 Didistribusikan di bawah Lisensi MIT. Lihat file LICENSE untuk informasi lebih lanjut.

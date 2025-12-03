@@ -15,14 +15,14 @@ def render(key_input: str, padding_char: str, key_mode: str):
 
     # --- KOLOM KIRI: INPUT ---
     with col_input:
-        st.subheader("📄 Input Plaintext")
+        st.subheader("Input Plaintext")
         plaintext = st.text_area(
             "Masukkan pesan yang akan dienkripsi:",
             height=200,  
             value="KRIPTOGRAFI SERU DAN MENYENANGKAN",
         )
 
-        if st.button("🔒 Enkripsi Sekarang", type="primary", use_container_width=True):
+        if st.button("Enkripsi Sekarang", type="primary", use_container_width=True):
             valid, msg = utils.validate_key(key_input)
             if not valid:
                 st.error(msg)
@@ -35,7 +35,7 @@ def render(key_input: str, padding_char: str, key_mode: str):
 
     # --- KOLOM KANAN: OUTPUT ---
     with col_output:
-        st.subheader("🔑 Hasil Ciphertext")
+        st.subheader("Hasil Ciphertext")
 
         res = st.session_state.cipher_result
         if res:
@@ -46,7 +46,7 @@ def render(key_input: str, padding_char: str, key_mode: str):
             )
 
             st.download_button(
-                label="💾 Simpan Ciphertext (.txt)",
+                label="Simpan Ciphertext (.txt)",
                 data=res["ciphertext"],
                 file_name="ciphertext.txt",
                 mime="text/plain",
@@ -58,7 +58,7 @@ def render(key_input: str, padding_char: str, key_mode: str):
     # --- BAGIAN VISUALISASI ---
     if st.session_state.cipher_result:
         st.divider()
-        st.header("🎬 Visualisasi Enkripsi")
+        st.header("Visualisasi Enkripsi")
         res = st.session_state.cipher_result
 
         phase_selection = st.radio(
