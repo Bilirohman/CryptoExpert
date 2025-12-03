@@ -76,7 +76,7 @@ def render(key_input: str):
     # --- VISUALIZATION SECTION ---
     if st.session_state.file_viz_data:
         st.divider()
-        st.header("🔬 Simulasi Visualisasi Byte")
+        st.header("Simulasi Visualisasi Byte")
         viz = st.session_state.file_viz_data
 
         phase_selection = st.radio(
