@@ -53,14 +53,14 @@ def main():
         key_mode_selection = st.radio(
             "Tipe Kunci",
             ["Text Key", "Numeric Key"],
-            help="Text: Kunci kata (misal: TEKNIK). Numeric: Urutan angka (misal: 4 1 3 2).",
+            help="Text: Kunci kata (misal: TEKNIK). Numeric: Urutan angka (misal: 4132).",
         )
 
         # Mapping UI selection ke value internal
         key_mode = "text" if "Text" in key_mode_selection else "numeric"
 
         # Placeholder yang dinamis
-        ph_val = "TEKNIK" if key_mode == "text" else "4 1 3 2"
+        ph_val = "TEKNIK" if key_mode == "text" else "4132"
         help_val = (
             "Masukkan kata kunci"
             if key_mode == "text"
