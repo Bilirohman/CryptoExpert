@@ -11,7 +11,7 @@ def reset_file_visuals():
     st.session_state.file_anim_phase = "write"
 
 
-def render(key_input: str):
+def render(key_input: str, key_mode: str):
     st.subheader("Enkripsi/Dekripsi File")
     components.render_step_info(
         "-",
@@ -37,28 +37,30 @@ def render(key_input: str):
             file_bytes = FileHandler.read_file(uploaded_file)
             sample_bytes = file_bytes[:50]
 
-            if action == "Enkripsi":
-                result_bytes = ColumnarTransposition.encrypt_bytes(
-                    file_bytes, key_input
-                )
-                st.session_state.file_viz_data = ColumnarTransposition.get_byte_steps(
-                    sample_bytes, key_input, "encrypt"
-                )
-                with col_viz:
-                    st.success(f"Terenkripsi! ({len(result_bytes)} bytes)")
-                    st.download_button(
-                        f"Download enc_{uploaded_file.name}",
-                        result_bytes,
-                        file_name=f"enc_{uploaded_file.name}",
-                    )
-            else:
-                try:
-                    result_bytes = ColumnarTransposition.decrypt_bytes(
-                        file_bytes, key_input
+            try:
+                if action == "Enkripsi":
+                    result_bytes = ColumnarTransposition.encrypt_bytes(
+                        file_bytes, key_input, key_mode
                     )
                     st.session_state.file_viz_data = (
                         ColumnarTransposition.get_byte_steps(
-                            sample_bytes, key_input, "decrypt"
+                            sample_bytes, key_input, "encrypt", key_mode
+                        )
+                    )
+                    with col_viz:
+                        st.success(f"Terenkripsi! ({len(result_bytes)} bytes)")
+                        st.download_button(
+                            f"Download enc_{uploaded_file.name}",
+                            result_bytes,
+                            file_name=f"enc_{uploaded_file.name}",
+                        )
+                else:
+                    result_bytes = ColumnarTransposition.decrypt_bytes(
+                        file_bytes, key_input, key_mode
+                    )
+                    st.session_state.file_viz_data = (
+                        ColumnarTransposition.get_byte_steps(
+                            sample_bytes, key_input, "decrypt", key_mode
                         )
                     )
                     with col_viz:
@@ -68,10 +70,11 @@ def render(key_input: str):
                             result_bytes,
                             file_name=f"dec_{uploaded_file.name}",
                         )
-                except Exception as e:
-                    st.error(f"Gagal mendekripsi: {str(e)}")
 
-            reset_file_visuals()
+                reset_file_visuals()
+
+            except Exception as e:
+                st.error(f"Error Processing: {str(e)}")
 
     # --- VISUALIZATION SECTION ---
     if st.session_state.file_viz_data:
@@ -119,9 +122,10 @@ def render(key_input: str):
 
         components.render_step_info(curr_idx, len(steps), action_label, desc_text)
 
-        # Render Grid Logic
+        display_key = viz.get("display_key", key_input)
+
         partial_grid = (
-            [[None for _ in range(len(key_input))] for _ in range(len(viz["grid"]))]
+            [[None for _ in range(len(display_key))] for _ in range(len(viz["grid"]))]
             if st.session_state.file_anim_phase == "write"
             else viz["grid"]
         )
@@ -133,7 +137,7 @@ def render(key_input: str):
 
         render_bytes_dynamic(
             partial_grid,
-            key_input,
+            display_key, 
             viz["order"],
             active_cell,
             st.session_state.file_anim_phase,
@@ -143,5 +147,5 @@ def render(key_input: str):
         st.divider()
         final_output_bytes = [s[2] for s in viz["read_steps"] if isinstance(s[2], int)]
         render_output_hex_grid(
-            final_output_bytes, len(key_input), title="Hasil Header (50 Byte)"
+            final_output_bytes, len(display_key), title="Hasil Header (50 Byte)"
         )

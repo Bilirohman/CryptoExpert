@@ -48,14 +48,26 @@ def main():
         )
 
         st.subheader("Parameter Kunci")
-        key_input = st.text_input(
-            "Masukkan Kunci (Key)", value="TEKNIK", help="Kunci pengacakan kolom"
+
+        # Pilihan Tipe Kunci
+        key_mode_selection = st.radio(
+            "Tipe Kunci",
+            ["Text Key", "Numeric Key"],
+            help="Text: Kunci kata (misal: TEKNIK). Numeric: Urutan angka (misal: 4 1 3 2).",
         )
-        key_mode = st.radio(
-            "Mode Duplikat Kunci",
-            ["stable", "numbered"],
-            help="Stable: Sesuai urutan muncul. Numbered: A1, A2...",
+
+        # Mapping UI selection ke value internal
+        key_mode = "text" if "Text" in key_mode_selection else "numeric"
+
+        # Placeholder yang dinamis
+        ph_val = "TEKNIK" if key_mode == "text" else "4 1 3 2"
+        help_val = (
+            "Masukkan kata kunci"
+            if key_mode == "text"
+            else "Masukkan urutan angka dipisah spasi"
         )
+
+        key_input = st.text_input("Masukkan Kunci (Key)", value=ph_val, help=help_val)
 
         # Logic Padding Hanya untuk Enkripsi Teks
         padding_char = "X"
@@ -73,13 +85,12 @@ def main():
             """
         )
 
-    # --- Routing ke Views ---
     if mode == "Enkripsi Teks":
         tab_encrypt.render(key_input, padding_char, key_mode)
     elif mode == "Dekripsi Teks":
         tab_decrypt.render(key_input, key_mode)
     elif mode == "Proses File":
-        tab_file.render(key_input)
+        tab_file.render(key_input, key_mode)
 
 
 if __name__ == "__main__":

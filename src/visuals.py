@@ -3,7 +3,7 @@ import math
 import html
 
 def render_grid(grid, key, order, active_cell=None, action_type="read"):
-    """Merender grid TEKS (Full Width) dengan Sanitasi HTML."""
+    """Merender grid TEKS."""
 
     html_table = '<table class="crypto-table">'
 
@@ -49,7 +49,7 @@ def render_grid(grid, key, order, active_cell=None, action_type="read"):
 def render_bytes_dynamic(
     grid, key, order, active_cell=None, action_type="read", title="Visualisasi Byte"
 ):
-    """Merender grid HEXADECIMAL (Full Width)."""
+    """Merender grid HEXADECIMAL."""
 
     html_table = '<table class="crypto-table">'
 
@@ -98,9 +98,6 @@ def render_bytes_dynamic(
 
 
 def render_output_hex_grid(byte_data, num_cols, title="Output Result"):
-    """
-    Menampilkan hasil akhir.
-    """
     st.markdown(f"#### {title}")
 
     if not byte_data:

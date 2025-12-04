@@ -15,8 +15,4 @@ class FileHandler:
 
     @staticmethod
     def create_download_link(data: bytes, filename: str):
-        """
-        Fungsi ini biasanya ditangani langsung oleh st.download_button,
-        tapi di sini kita siapkan objek BytesIO-nya.
-        """
         return io.BytesIO(data)

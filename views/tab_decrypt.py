@@ -27,8 +27,15 @@ def render(key_input: str, key_mode: str):
                             cipher_in, key_input, key_mode
                         )
                     )
-                    reset_visuals()
-                    st.success("Dekripsi Berhasil!")
+
+                    if st.session_state.decrypt_result is None:
+                        st.error(
+                            "Gagal memproses. Pastikan kunci Numerik valid (Permutasi 1..N)."
+                        )
+                    else:
+                        reset_visuals()
+                        st.success("Dekripsi Berhasil!")
+
                 except Exception as e:
                     st.error(f"Gagal: {e}")
 
@@ -97,8 +104,10 @@ def render(key_input: str, key_mode: str):
 
         components.render_step_info(current_idx, len(steps), action_label, desc_text)
 
+        display_key = res.get("display_key", list(key_input))
+
         partial_grid = (
-            [["" for _ in range(len(key_input))] for _ in range(len(res["grid"]))]
+            [["" for _ in range(len(display_key))] for _ in range(len(res["grid"]))]
             if st.session_state.anim_phase == "write"
             else res["grid"]
         )
@@ -110,7 +119,7 @@ def render(key_input: str, key_mode: str):
 
         render_grid(
             partial_grid,
-            key_input,
+            display_key,  
             res["order"],
             active_cell,
             st.session_state.anim_phase,

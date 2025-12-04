@@ -18,12 +18,12 @@ def render(key_input: str, padding_char: str, key_mode: str):
         st.subheader("Input Plaintext")
         plaintext = st.text_area(
             "Masukkan pesan yang akan dienkripsi:",
-            height=200,  
+            height=200,
             value="KRIPTOGRAFI SERU DAN MENYENANGKAN",
         )
 
         if st.button("Enkripsi Sekarang", type="primary", use_container_width=True):
-            valid, msg = utils.validate_key(key_input)
+            valid, msg = utils.validate_key(key_input, key_mode)
             if not valid:
                 st.error(msg)
             else:
@@ -99,13 +99,14 @@ def render(key_input: str, padding_char: str, key_mode: str):
 
         components.render_step_info(current_idx, len(steps), action_label, desc_text)
 
-        # Render Grid
+        display_key = res.get("display_key", list(key_input))
+
         partial_grid = (
-            [["" for _ in range(len(key_input))] for _ in range(len(res["grid"]))]
+            [["" for _ in range(len(display_key))] for _ in range(len(res["grid"]))]
             if st.session_state.anim_phase == "write"
             else res["grid"]
         )
-    
+
         if st.session_state.anim_phase == "write":
             for i in range(current_idx):
                 r, c, ch = steps[i]
@@ -113,7 +114,7 @@ def render(key_input: str, padding_char: str, key_mode: str):
 
         render_grid(
             partial_grid,
-            key_input,
+            display_key,  
             res["order"],
             active_cell,
             st.session_state.anim_phase,
